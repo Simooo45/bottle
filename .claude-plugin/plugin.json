@@ -1,0 +1,12 @@
+{
+  "name": "bottle",
+  "description": "Bootstrap a project with a small, file-based documentation system so Claude Code keeps context, lessons, and decisions across session restarts instead of starting cold every time.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Simone Elia",
+    "url": "https://github.com/Simooo45"
+  },
+  "homepage": "https://github.com/Simooo45/bottle",
+  "repository": "https://github.com/Simooo45/bottle",
+  "license": "MIT"
+}

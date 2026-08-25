@@ -1,0 +1,16 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "bottle",
+  "description": "A message in a bottle: session-continuity docs for Claude Code.",
+  "owner": {
+    "name": "Simone Elia",
+    "url": "https://github.com/Simooo45"
+  },
+  "plugins": [
+    {
+      "name": "bottle",
+      "source": "./",
+      "description": "Bootstrap a project with a small, file-based documentation system so Claude Code keeps context across session restarts."
+    }
+  ]
+}
