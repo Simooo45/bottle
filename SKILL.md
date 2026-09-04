@@ -248,9 +248,10 @@ node .claude/scripts/age-backlog.mjs [backlogPath] [historyPath] [cutoffDays]
 Defaults match the standard layout (`.claude/BACKLOG.md`,
 `.claude/BACKLOG_HISTORY.md`, `7`), so `node .claude/scripts/age-backlog.mjs`
 with no arguments works out of the box for a project that used the default
-names. Mention to the user that running it occasionally (or wiring it into
-a periodic task, if their setup supports that) is what keeps BACKLOG.md
-from growing back into a wall of closed items.
+names. RULES.md rule 0 already runs it at the start of every session, that's
+what keeps BACKLOG.md from growing back into a wall of closed items without
+the user having to remember to run it by hand. Running it manually any other
+time (e.g. right before a release) is still fine, it's idempotent.
 
 The same script ages TEST.md the same way, its item shape is identical
 minus the priority field, just point it at the other pair of files:
@@ -270,7 +271,9 @@ part that makes the system self-sustaining instead of a one-time favor:
   automatically, because CLAUDE.md now says to, then gives the user a short
   status line confirming the bootstrap happened (see RULES.md rule 0).
   Nobody has to remember to ask for that again, and the user always gets a
-  quick reminder that this system is running.
+  quick reminder that this system is running. That same bootstrap also runs
+  the archival script if the project copied it in, so BACKLOG.md/TEST.md
+  actually stay short instead of just being documented as aging out.
 - **The user can keep working by hand even when Claude isn't available**,
   out of credits, subscription lapsed, or just offline: write new
   requirements in BACKLOG.md's "To triage" section, in whatever shorthand

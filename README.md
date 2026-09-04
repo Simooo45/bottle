@@ -63,7 +63,7 @@ Eight files. Each one has exactly one job, nothing shared, nothing overlapping:
 | `TEST_HISTORY.md` | archive, never read in full | Tests closed more than a week ago |
 | `CHANGELOG.md` | archive, never read in full | Full change history, most recent first |
 
-A small script with no dependencies (`scripts/age-backlog.mjs`) keeps `BACKLOG.md` (and `TEST.md`, if you have it) from filling back up with closed items. Claude offers to copy it into your project during setup.
+A small script with no dependencies (`scripts/age-backlog.mjs`) keeps `BACKLOG.md` (and `TEST.md`, if you have it) from filling back up with closed items. Claude offers to copy it into your project during setup, and runs it automatically at the start of every session (RULES.md rule 0), so nobody has to remember to run it by hand.
 
 Every generated `RULES.md` includes two default rules, and these are not just suggestions: source files have a limit of 500 lines, and `MESSAGE_IN_A_BOTTLE.md` gets a full rewrite, down to under 100 lines, the moment it would go past 200, instead of being trimmed line by line. Both rules exist for the same reason as the rest of Bottle: a file nobody can read in full stops being useful, whether it is docs or code. I learned that one the slow way.
 
