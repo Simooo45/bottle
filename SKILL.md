@@ -162,8 +162,9 @@ Ask if there's anything Claude should always do or never do in this
 project, project-specific conventions, a "never touch this without asking"
 area, formatting rules, privacy-sensitive source material. It's completely
 fine if the answer is "nothing yet", RULES.md starts with just the baked-in
-defaults (rules 0-5 in the template: bootstrap, history files, always-read
-files, BACKLOG format, the 500-line source-file cap, TEST format) and grows
+defaults (rules 0-6 in the template: bootstrap, history files, always-read
+files, BACKLOG format, the 500-line source-file cap, TEST format, keep the
+human in the loop) and grows
 the first time a correction actually happens. The 500-line cap and the
 MESSAGE_IN_A_BOTTLE.md rewrite rule are unconditional, always true for every
 project this system is set up in, don't ask about them, don't offer to drop

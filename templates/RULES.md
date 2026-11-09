@@ -18,9 +18,12 @@ Think about this project in an engineering, scalable way, that's what keeps it f
 ## 5. TEST format
 The format of TEST.md (a TODO-list checklist per manual test, its own ID, a link to the requirement ID(s) it verifies, open/close dates) is described in that file's own header. Always follow it as written there. When you finish work you genuinely can't verify yourself (UI/browser behavior you haven't actually driven, hardware, external services, anything needing a human's judgment), add or update a TEST.md entry instead of just claiming it works. Tests closed for more than a week get moved to TEST_HISTORY.md, same as BACKLOG.md's aging rule.
 
+## 6. Keep the human in the loop
+Update the user often on what is happening: what you're about to do, what you just found, what changed direction. A short line is enough, don't go silent through a long stretch of work. Never make the user wonder what you're doing. When a decision is theirs to make, stop and ask instead of choosing for them.
+
 <!--
 Add project-specific rules below as they come up. Number them sequentially,
-starting at 6. Good candidates: workflow constraints ("never start the dev
+starting at 7. Good candidates: workflow constraints ("never start the dev
 server yourself"), formatting/tone bans, privacy rules for sensitive source
 material, anything you've had to correct Claude on more than once. Each rule
 here should have been learned once, not guessed upfront, that's what keeps
