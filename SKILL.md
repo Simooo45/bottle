@@ -1,21 +1,16 @@
 ---
 name: bottle
 description: >
-  Bootstrap a new or existing project with a small, file-based documentation
-  system so Claude Code keeps context, lessons, and decisions across session
-  restarts instead of starting cold every time. Sets up a handful of
-  markdown files under .claude/ (standing rules, a free-form note to your
-  next session, a phased roadmap, a prioritized backlog, and searchable
-  history/changelog archives) sized and split so the files read every
-  session stay small while the archives grow without ever costing context.
-  Use this whenever someone is starting a new project and asks how to
-  structure it for long-running AI-assisted work, wants Claude to "remember"
-  things between sessions without relying on chat history, asks for a
-  CLAUDE.md + backlog + changelog setup, mentions "session continuity",
-  "persistent context", "project memory system", or is retrofitting an
-  existing codebase that has no such system yet. Also use to explain or
-  extend an already-bootstrapped bottle system (add a rule, start the
-  archival script, add a new backlog section).
+  Set up a small file-based documentation system (standing rules, a note to
+  the next session, a roadmap, a backlog, changelog archives) so an AI coding
+  assistant keeps context across session restarts instead of starting cold.
+  Use when starting or retrofitting a project for long-running AI-assisted
+  work, when the user wants the assistant to "remember" things between
+  sessions without chat history, asks for a CLAUDE.md/AGENTS.md + backlog +
+  changelog setup, or mentions "session continuity", "persistent context" or
+  "project memory system". Also use to explain or extend an existing bottle
+  setup (add a rule, run the archival script, add a backlog section). Files
+  read every session stay small; archives grow without costing context.
 license: MIT
 ---
 
@@ -23,10 +18,14 @@ license: MIT
 
 A message in a bottle: something you write for a future reader you'll never
 meet in person, because by the time they read it you'll have no memory of
-writing it. That's exactly the situation every new Claude Code session is
+writing it. That's exactly the situation every new AI coding session is
 in. This skill sets up a small, plain-markdown system so each session can
 read a short, cheap briefing and pick up real continuity, without either
 side needing to reread the whole project history.
+
+It was first written for Claude Code only, and later extended to also work
+with GitHub Copilot (VS Code) and Codex. Some wording below still says
+"Claude": read it as "the assistant", whichever one is running.
 
 ## The problem this solves
 
@@ -79,10 +78,13 @@ bullet list.
 | `CHANGELOG.md` | archive, never full read | Full change history, most recent first. |
 | optional domain "bible" (e.g. `FRONTEND.md`, `API.md`, `SCHEMA.md`) | small, full read before touching that domain | Only for a domain that's genuinely large, stable, and revisited often (a design system, a data contract). Don't create one speculatively, see the interview below. |
 
-`CLAUDE.md` (or the project's existing instructions file) is what ties it
-together: it must state the bootstrap rule and hold a short table pointing
-to each file with when to read it, so every session, without being told,
-knows to read RULES.md and MESSAGE_IN_A_BOTTLE.md first.
+The project's instructions file is what ties it together: `CLAUDE.md` for
+Claude Code, `AGENTS.md` for Codex and Copilot in VS Code (Copilot also reads
+`.github/copilot-instructions.md`). It must state the bootstrap rule and hold
+a short table pointing to each file with when to read it, so every session,
+without being told, knows to read RULES.md and MESSAGE_IN_A_BOTTLE.md first.
+Claude Code does not read `AGENTS.md`: if the project uses both, keep the
+content in `AGENTS.md` and make `CLAUDE.md` a single line, `@AGENTS.md`.
 
 ## Setting this up: guide, don't just generate
 
@@ -123,6 +125,10 @@ is files that live *in the repo*, get committed, and are readable by anyone
 who clones it, not a store private to one machine or one assistant. If
 after generating the files they don't show up under the project's own
 `.claude/`, that's a bug in this run, not an alternate valid location.
+
+`.claude/` is the default docs folder. If the user doesn't use Claude Code,
+offer a neutral one (e.g. `docs/bottle/`) and use it instead of `.claude/`
+everywhere: RULES.md rule 0, the script path, the file table.
 
 If the project already has code and history (retrofitting, not a blank
 folder), read around before asking: README, package manifest, lint/CI
@@ -202,7 +208,7 @@ only if the user has a reason to.
 
 ## Generating the files
 
-Copy each template from `${CLAUDE_SKILL_DIR}/templates/` into the
+Copy each template from `templates/` (next to this SKILL.md) into the
 project's `.claude/` directory (or wherever the user's docs live) and adapt
 it:
 
@@ -224,18 +230,19 @@ it:
   edit or drop the matching rule instead of leaving a reference to a file
   that doesn't exist in this project.
 
-Then update (or create) `CLAUDE.md`:
+Then update (or create) the instructions file (`CLAUDE.md`, `AGENTS.md`, or
+both, see above):
 
 - Add a short "mandatory bootstrap" note stating the session-start rule.
 - Add the file-map table, but only the rows for files that actually exist
   in this project, don't list a file you didn't create.
 
-If `CLAUDE.md` already has unrelated content, add these as new sections,
+If it already has unrelated content, add these as new sections,
 don't rewrite what's already there.
 
 ## The archival script
 
-`${CLAUDE_SKILL_DIR}/scripts/age-backlog.mjs` moves `[x]` items from
+`scripts/age-backlog.mjs` (next to this SKILL.md) moves `[x]` items from
 BACKLOG.md into BACKLOG_HISTORY.md once they've been closed for at least
 the cutoff (default 7 days), preserving the section/closed tree structure.
 It's a plain Node script with no dependencies, copy it into the project

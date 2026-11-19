@@ -11,9 +11,10 @@
 <p align="center">
   <img src="https://img.shields.io/github/license/Simooo45/bottle?style=flat-square&color=111111&cacheSeconds=3600" alt="License">
   <img src="https://img.shields.io/badge/claude%20code-plugin-111111?style=flat-square" alt="Claude Code plugin">
+  <img src="https://img.shields.io/badge/copilot%20%7C%20codex-agent%20skill-111111?style=flat-square" alt="Agent skill for GitHub Copilot and Codex">
 </p>
 
-Every [Claude Code](https://claude.com/claude-code) session starts from zero. That is the part that really costs you time. Claude can read your whole codebase in seconds, but it does not remember what an earlier session already tried, fixed, or learned the hard way. So the same bugs come back, and you answer the same questions twice. Bottle fixes this with a few small markdown files that every new session reads first. They are short enough to read in full, so nothing important gets lost, and you never have to explain it all again.
+Every [Claude Code](https://claude.com/claude-code) session starts from zero. The same is true for GitHub Copilot in VS Code and for Codex: Bottle works with all three. That is the part that really costs you time. Claude can read your whole codebase in seconds, but it does not remember what an earlier session already tried, fixed, or learned the hard way. So the same bugs come back, and you answer the same questions twice. Bottle fixes this with a few small markdown files that every new session reads first. They are short enough to read in full, so nothing important gets lost, and you never have to explain it all again.
 
 This is what makes it possible to build something big through normal conversation, not just quick one-off edits. You describe what you want in everyday language, and Claude can carry a real, multi-step project forward across many sessions, while you stay in charge: you see the plan, you approve the direction, and you decide what happens next, instead of losing track of the project or re-explaining it every time. Write down one big, messy request, and Claude splits it into separate, simpler tasks on its own, so nothing gets lost inside one oversized item.
 
@@ -77,16 +78,25 @@ This is not a "generate six files and walk away" skill. The file set can look st
 
 ## Manual install, no plugin system
 
-Skills work the same way, whether they come from a plugin or sit directly in a skills folder:
+Skills work the same way, whether they come from a plugin or sit directly in a skills folder. Bottle follows the open Agent Skills format (see the docs for [VS Code](https://code.visualstudio.com/docs/agent-customization/agent-skills) and [Codex](https://learn.chatgpt.com/docs/build-skills)), so the same folder works in Claude Code, GitHub Copilot (VS Code) and Codex. The folder must be named `bottle`, the same as the `name` in `SKILL.md`.
 
 ```bash
 git clone https://github.com/Simooo45/bottle.git
-cp -r bottle ~/.claude/skills/bottle   # available in every project
-# or
-cp -r bottle .claude/skills/bottle     # this project only
 ```
 
-Call it with `/bottle`.
+Then copy it to the skills folder of your tool:
+
+| Tool | This project only | Every project |
+|---|---|---|
+| Claude Code | `.claude/skills/bottle` | `~/.claude/skills/bottle` |
+| GitHub Copilot (VS Code) | `.github/skills/bottle` | `~/.copilot/skills/bottle` |
+| Codex | `.agents/skills/bottle` | `~/.agents/skills/bottle` |
+
+For example, for Copilot in one project: `cp -r bottle .github/skills/bottle`. VS Code also reads `.claude/skills/` and `.agents/skills/`, so one copy can serve more than one tool.
+
+Call it with `/bottle` in Claude Code and Copilot, or `$bottle` in Codex. Or just say "Set up session continuity for this project" and the assistant will pick the skill on its own.
+
+During setup the skill writes the "read these files first" rule into your project's instructions file: `CLAUDE.md` for Claude Code, `AGENTS.md` for Codex and Copilot. If you use more than one tool, keep the content in `AGENTS.md` and make `CLAUDE.md` a single line: `@AGENTS.md`.
 
 ## License
 

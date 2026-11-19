@@ -1,4 +1,4 @@
-This file tracks manual tests: things Claude can't verify itself (real browser/UI behavior it hasn't actually driven, hardware, external services, anything that needs a human's eyes or judgment) and that the user needs to run by hand. Not read in full by default, search it (or read the relevant section) when the user asks what's still open, or before touching an area that has open tests against it.
+This file tracks manual tests: things the assistant can't verify itself (real browser/UI behavior it hasn't actually driven, hardware, external services, anything that needs a human's eyes or judgment) and that the user needs to run by hand. Not read in full by default, search it (or read the relevant section) when the user asks what's still open, or before touching an area that has open tests against it.
 
 Every test follows this format:
 

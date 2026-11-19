@@ -1,7 +1,7 @@
-This file holds every standing rule for how Claude should work in this project. Read it in full at the start of every session. Every rule here is always true and must always be followed, unless the user explicitly overrides it for the current session.
+This file holds every standing rule for how the AI assistant should work in this project. Read it in full at the start of every session. Every rule here is always true and must always be followed, unless the user explicitly overrides it for the current session.
 
 ## 0. Session bootstrap
-At the start of every session, before doing anything else: read this file (RULES.md) and MESSAGE_IN_A_BOTTLE.md in full, in that order (see rule 2 for the other always-read file, rule 1 for the files that never do). Then check BACKLOG.md's "To triage" section: if it holds any hand-written entries, rework them into the standard format right away, don't wait for a session that happens to "touch" that area. Then, if `.claude/scripts/age-backlog.mjs` exists, run it (`node .claude/scripts/age-backlog.mjs`, and again against TEST.md/TEST_HISTORY.md if TEST.md exists) so items closed past the cutoff actually move into the history files instead of piling up in BACKLOG.md/TEST.md waiting for someone to remember to run it by hand. Close the bootstrap with a short status line for the user (not a wall of text), confirming what was read, archived, and reminding them that new requirements can always be added by hand at the bottom of BACKLOG.md (handy when running low on tokens) — they get reworked automatically the next time this file is read, or immediately on request.
+At the start of every session, before doing anything else: read this file (RULES.md) and MESSAGE_IN_A_BOTTLE.md in full, in that order (see rule 2 for the other always-read file, rule 1 for the files that never do). Then check BACKLOG.md's "To triage" section: if it holds any hand-written entries, rework them into the standard format right away, don't wait for a session that happens to "touch" that area. Then, if `.claude/scripts/age-backlog.mjs` exists (adjust this path if the docs live elsewhere), run it (`node .claude/scripts/age-backlog.mjs`, and again against TEST.md/TEST_HISTORY.md if TEST.md exists) so items closed past the cutoff actually move into the history files instead of piling up in BACKLOG.md/TEST.md waiting for someone to remember to run it by hand. Close the bootstrap with a short status line for the user (not a wall of text), confirming what was read, archived, and reminding them that new requirements can always be added by hand at the bottom of BACKLOG.md (handy when running low on tokens) — they get reworked automatically the next time this file is read, or immediately on request.
 
 ## 1. History files: never read in full
 BACKLOG_HISTORY.md, TEST_HISTORY.md, and CHANGELOG.md are expected to grow large over the life of the project. Never read them end to end, that burns context for no benefit. If you need historical detail, search them for the specific keyword, date, or requirement/test ID instead.
@@ -25,7 +25,7 @@ Update the user often on what is happening: what you're about to do, what you ju
 Add project-specific rules below as they come up. Number them sequentially,
 starting at 7. Good candidates: workflow constraints ("never start the dev
 server yourself"), formatting/tone bans, privacy rules for sensitive source
-material, anything you've had to correct Claude on more than once. Each rule
+material, anything you've had to correct the assistant on more than once. Each rule
 here should have been learned once, not guessed upfront, that's what keeps
 this file short and worth reading in full every time.
 -->

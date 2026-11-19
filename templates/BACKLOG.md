@@ -19,7 +19,7 @@ At the bottom of this file there's a section where the user jots down new requir
 ---
 
 ## To triage
-<Space for the user to write new requirements by hand, unstructured. Claude
+<Space for the user to write new requirements by hand, unstructured. The assistant
 rewrites and files these under the right section above, then clears this
 section, at the start of every session (see RULES.md rule 0), or immediately
 on request.>
